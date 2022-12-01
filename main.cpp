@@ -29,7 +29,7 @@ int main()
     for (int i = 0; i < n; i++){
         array[i] = input();
     }
-    int buffer[3] = {0, 0, 0};
+    int buffer[3] = {-1, -1, -1};
     for (int i = 0; i < n; i++){
         for (int j = 0; j < 3; j++){
             if (array[i] > buffer[j]){
@@ -42,6 +42,34 @@ int main()
         }
     }
     cout << endl;
+    if (n < 2){
+        cout << "Нельзя сделать такое разбиение" << endl << endl;
+        delete [] array;
+        return 0;
+    }
+    if (n == 2){
+        int elem1 = array[0];
+        int elem2 = array[1];
+        int min;
+        int max;
+        if (elem1 > elem2){
+            max = elem1;
+            min = elem2;
+        }else{
+            max = elem2;
+            min = elem1;
+        }
+        if (min * 1.5 < max){
+            cout << "Нельзя сделать такое разбиение" << endl << endl;
+        }else{
+            cout << "Вес кучи: " << elem1 << endl;
+            cout << "Камни: " << elem1 << endl << endl;
+            cout << "Вес кучи: " << elem2 << endl;
+            cout << "Камни: " << elem2 << endl << endl;
+        }
+        delete [] array;
+        return 0;
+    }
     Bunch bnc1(n);
     Bunch bnc2(n);
     bnc1.append(array[buffer[0]]);
